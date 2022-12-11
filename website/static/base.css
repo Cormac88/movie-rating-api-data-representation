@@ -1,0 +1,94 @@
+html,
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: scroll;
+  transition: background 200ms;
+}
+p,
+ul,
+li,
+a {
+  margin: 0;
+  appearance: none;
+  padding: 0;
+  text-decoration: none;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4 {
+  text-align: left;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  display: flex;
+}
+nav a {
+  appearance: none;
+  border: none;
+  padding: 1em;
+  background-color: aqua;
+  font-weight: bolder;
+  font-size: 1.1em;
+  margin: 1.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+article {
+  max-width: 40%;
+  padding-left: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+article h .hide {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+form.center {
+  align-items: center;
+}
+
+button {
+  appearance: none;
+  border: none;
+  padding: 1em 3em;
+  background-color: aqua;
+  font-weight: bolder;
+  font-size: 1.1em;
+  margin: 1.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+li {
+  padding: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+*::-webkit-scrollbar {display: none;}
+

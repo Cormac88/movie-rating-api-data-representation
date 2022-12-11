@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Import Google Font. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import static files: JavaScript and CSS. -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='base.css') }}"
+    />
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='index.js') }}"
+    ></script>
+  <body>
+    <audio
+      id="audio"
+      src="{{ url_for('static', filename='Never-Gonna-Give-You-Up-Original.mp3') }}"
+    ></audio>
+    <main>
+      <nav>
+        <!-- Handle what nav is presented to the user. -->
+        {% if user.is_authenticated %} {% if request.path == "/movie"%}
+        <a href="/">Home</a>
+        {% endif %}
+        <form method="post" action="/logout">
+          <button type="submit">Logout</button>
+        </form>
+        {% endif %}
+      </nav>
+      <!-- Present Flashed messages. -->
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div role="alert" class="alert">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
+    </main>
+  </body>
+</html>

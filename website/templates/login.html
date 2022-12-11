@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %}Login / Sign Up{% endblock %} {%
+block content %}
+<!-- Form for handling login and sign-up. -->
+<form method="POST" class="login">
+  <h3>Login / Sign Up</h3>
+  <div class="userinput">
+    <label for="email">Email Address</label>
+    <input type="email" name="email" placeholder="Enter email" />
+  </div>
+  <div class="userinput">
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Confirm password" />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+{% endblock %}

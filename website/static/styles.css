@@ -1,0 +1,211 @@
+.hide {
+  display: none;
+}
+.poster {
+  animation: fadeinDesktop 2s;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+.searchcontainer {
+  position: relative;
+}
+.search {
+  appearance: none;
+  background-color: white;
+  border: 4px solid black;
+  padding: 1em 2em;
+  display: block;
+  border-radius: 5px;
+  margin-top: 1em;
+}
+
+#list {
+  position: absolute;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  overflow: scroll;
+}
+
+.userinput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.userinput label {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.userinput input {
+  padding: 1em;
+  border: 3px solid rebeccapurple;
+}
+.flex {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.login {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  height: 100%;
+  align-items: center;
+}
+
+.flexchild {
+  flex: 1 0 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+}
+.flexchild:first-of-type {
+  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+}
+.gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.image {
+  width: 12.5%;
+  height: auto;
+}
+.card {
+  background-color: rgba(255, 255, 255, 0.8);
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 4em;
+  z-index: 1;
+}
+
+.movie {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
+}
+.movie h4 {
+  margin-bottom: 1em;
+  text-align: center;
+}
+.overflow {
+  overflow: scroll;
+  height: 500px;
+}
+.rating {
+  margin: 20px 0px;
+  display:flex;
+  flex-direction: column;
+}
+.rating p {
+  font-weight: bold;
+}
+.alert {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 2em 3em;
+  background-color: aquamarine;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+.suggestion {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+@keyframes fadeinDesktop {
+  from {
+    opacity: 0;
+    translate: 90px;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+}
+
+@keyframes fadeinMobile {
+  from {
+    opacity: 0;
+    scale: 1;
+  }
+  to {
+    opacity: 1;
+    scale: 1.2;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flex {
+    flex-direction: column;
+    justify-content: unset;
+  }
+  .flexchild {
+    width: 100%;
+    position: initial;
+    flex: unset;
+    height: 50%;
+    background: none;
+  }
+  .flexchild:first-of-type {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    z-index: 2;
+    background: none;
+  }
+  .overflow {
+    height: 40vh;
+    overflow: scroll;
+  }
+  .card {
+    padding: 1em;
+    border-radius: 0;
+  }
+  .card h2 {
+    margin-bottom: 2em;
+  }
+  .gallery {
+    position: fixed;
+    height: 100vh;
+  }
+  .image {
+    width: 50%;
+    height: auto;
+  }
+  .poster {
+    position: fixed;
+    width: 100%;
+    animation: fadeinMobile 2s;
+    scale: 1.2;
+  }
+  .article {
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 3;
+    max-width: 100%;
+    width: 100%;
+
+    padding: 20px 0;
+  }
+}

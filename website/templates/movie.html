@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block title %}Movie{% endblock %} {% block content
+%} 
+<!-- If the movie has already been rated, get rating data from the database. -->
+{% set rating = movie.rating | default(1, true) %} {% if data.poster_path %}
+{% set poster = "https://image.tmdb.org/t/p/original/" + data.poster_path %} {%
+else %} {% set poster = "https://picsum.photos/200/300" %}{% endif %}
+<img class="poster" src="{{ poster }}" />
+{% set butter = movie.butter | default(1, true) %}
+<article class="article">
+  <h2>{{ data.original_title }}</h2>
+  <!-- Form for rating and editing a movie. -->
+  <form method="post" class="center">
+    <input
+      type="text"
+      name="name"
+      value="{{data.original_title}}"
+      class="hide"
+    />
+    <input type="text" name="poster" value="{{poster}}" class="hide" />
+    <div class="rating">
+      <p>Bags 'o Popcorn</p>
+      <div>
+      {% for i in range(5) %} {% if i == rating -1 %}
+      <input
+        type="radio"
+        name="rating"
+        value="{{i+1}}"
+        class="radio"
+        required
+        checked
+      />🍿 {% else %}
+      <input
+        type="radio"
+        name="rating"
+        value="{{i+1}}"
+        class="radio"
+        required
+      />🍿 {% endif %} {% endfor %}
+    </div>
+    </div>
+    <div class="rating">
+      <p>Butter Meter 🧈</p>
+    <input onchange="butterMeUp(this)"
+      type="range"
+      min="1"
+      required
+      max="100"
+      name="butter"
+      value="{{butter}}"
+    />
+    </div>
+    <button type="submit">submit</button>
+  </form>
+  <!-- If the movie already exists, present a remove button. -->
+  {% if movie %}
+  <form method="post" action="/remove?id={{ movie.id }}">
+    <button type="submit">remove</button>
+  </form>
+  {% endif %}
+</article>
+<!-- On page load set buttery background. -->
+<script type="text/javascript">
+  const event = {value:{{butter}}}
+  butterMeUp(event);
+</script>
+{% endblock %}

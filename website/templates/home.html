@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+<div class="flex">
+  <div class="flexchild">
+    <h2>Search</h2>
+    <div class="searchcontainer">
+      <!-- Search input, uses JavaScript to send POST request. -->
+      <input
+        class="search"
+        placeholder="Search for a movie"
+        oninput="search(this)"
+        value="{{ request.form.search }}"
+      />
+      <!-- Empty list used to present results of API search. -->
+      <ul id="list"></ul>
+    </div>
+    <button class="suggestion" onclick="playMusic()">get a movie suggestion</button>
+  </div>
+  <div class="flexchild">
+    <div class="gallery">
+      <!-- Map through user rated movies and present movie poster -->
+      {% for movie in user.movies %}
+      <img src="{{movie.poster}}" class="image" />
+      {% endfor %}
+    </div>
+    <div class="card">
+      <h2>My selection</h2>
+      <div class="overflow">
+        <!-- Present rated movies in descending order with links to rating page. -->
+        {% for movie in user.movies|sort(attribute="butter",
+        reverse=True)|sort(attribute="rating", reverse=True)%}
+        <div class="movie">
+          <h4>
+            <a href="/movie?id={{ movie.id }}"> {{movie.name}}</a>
+          </h4>
+          <div class="flex">
+            <p>
+              {% set rating = movie.rating | int %} {% for i in range(rating) %}
+              🍿 {% endfor %}
+            </p>
+            <p>{{ movie.butter }}🧈</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
