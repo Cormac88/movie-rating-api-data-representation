@@ -57,7 +57,7 @@ def movie():
             movie.poster = poster
             db.session.commit()
         else:
-            new_movie = Movie(butter=butter, rating=rating, id=id,user_id=current_user.id, name=name, poster=poster)
+            new_movie = Movie(butter=butter, rating=rating, id=current_user.id, name=name, poster=poster)
             db.session.add(new_movie)
             db.session.commit()
         return redirect(url_for('routes.home'))
@@ -72,7 +72,7 @@ def remove():
     id = request.args.get('id', None)
     movie = Movie.query.get(id)
     if movie:
-        if movie.user_id == current_user.id:
+        if movie.id == current_user.id:
             db.session.delete(movie)
             db.session.commit()
             return redirect(url_for('routes.home'))

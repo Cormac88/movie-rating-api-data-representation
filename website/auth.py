@@ -44,7 +44,7 @@ def login():
     return render_template("login.html", user=current_user)
 
 # The logout endpoint only handles post requests.
-# We logour the user and then navigate the user to the login page.
+# We logout the user and then navigate the user to the login page.
 @auth.route('/logout', methods=['POST'])
 @login_required
 def logout():
