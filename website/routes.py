@@ -38,8 +38,8 @@ def movie():
     url = f"{MOVIE_DB_URL}movie/{id}?api_key={API_KEY}&language=en-US"
     response = requests.get(url)
     data = json.loads(response.text)
-    movie = Movie.query.get(id)
-
+    movie = db.session.query(Movie).filter(Movie.user_id == current_user.id).filter(Movie.movie_id == id).first()
+    
     # POST requests are used to rate the movie.
     if request.method == 'POST':
         rating = request.form.get('rating')
@@ -57,7 +57,7 @@ def movie():
             movie.poster = poster
             db.session.commit()
         else:
-            new_movie = Movie(butter=butter, rating=rating, id=current_user.id, name=name, poster=poster)
+            new_movie = Movie(butter=butter, rating=rating, user_id=current_user.id, movie_id=id, name=name, poster=poster)
             db.session.add(new_movie)
             db.session.commit()
         return redirect(url_for('routes.home'))
@@ -70,9 +70,10 @@ def movie():
 @login_required
 def remove():
     id = request.args.get('id', None)
-    movie = Movie.query.get(id)
+    movie = db.session.query(Movie).filter(Movie.user_id == current_user.id).filter(Movie.movie_id == id).first()
     if movie:
-        if movie.id == current_user.id:
+        if movie.movie_id == int(id) and current_user.id == movie.user_id: 
             db.session.delete(movie)
             db.session.commit()
             return redirect(url_for('routes.home'))
+    return redirect(url_for('routes.home'))
